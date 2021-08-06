@@ -1,23 +1,31 @@
 {
 	"name": "github-repo-finder",
 	"displayName": "GitHub Repo Finder",
+	"publisher": "MichealAtaklt",
 	"description": "easily find github repositories in your vscode.",
 	"version": "0.0.1",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/matakltm-code/GitHub-Repo-Finder"
+	},
+	"icon": "images/icon.png",
+	"galleryBanner": {
+		"color": "#C80000",
+		"theme": "dark"
+	},
 	"engines": {
 		"vscode": "^1.59.0"
 	},
-	"categories": [
-		"Other"
-	],
+	"categories": ["Language Packs", "Education", "Programming Languages", "Other"],
 	"activationEvents": [
-		"onCommand:github-repo-finder.helloWorld"
+		"onCommand:github-repo-finder.githubRepoFinder"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "github-repo-finder.helloWorld",
-				"title": "Hello World"
+				"command": "github-repo-finder.githubRepoFinder",
+				"title": "GitHub Repo Finder"
 			}
 		]
 	},

@@ -1,6 +1,5 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
 const vscode = require('vscode');
+const axios = require('axios');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -9,19 +8,40 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+	// Get all my repository
+	var inputGitHubToken = undefined;
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "github-repo-finder" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('github-repo-finder.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from GitHub Repo Finder!');
+	let disposable = vscode.commands.registerCommand('github-repo-finder.githubRepoFinder', async function () {
+		// Check the user insertes his/her github token
+		if (inputGitHubToken === undefined || inputGitHubToken === '' || inputGitHubToken === null) {
+			inputGitHubToken = await vscode.window.showInputBox({
+				title: 'GitHub API: Personal access tokens',
+				placeHolder: 'Enter your personal github access token.',
+				ignoreFocusOut: true
+			});
+			
+		}
+		try {
+			const res = await axios.get('https://api.github.com/users/matakltm-code/repos?access_token=' + inputGitHubToken);
+			const gitRepos = res.data.map(
+				gitRepo => ({
+					label: gitRepo.name,
+					detail: gitRepo.description,
+					link: gitRepo.html_url,
+				})
+			)
+			// Display for the user to search the repost
+			const gitRepo = await vscode.window.showQuickPick(gitRepos, {
+				matchOnDetail: true,
+				matchOnDescription: true
+			});
+			if (gitRepo == null) return;
+			vscode.env.openExternal(gitRepo.link)
+		} catch (e) {
+			// console.log(e);
+			vscode.window.showErrorMessage('Github: access token is not valid. Please try again!');
+			inputGitHubToken = undefined;
+		}
 	});
 
 	context.subscriptions.push(disposable);

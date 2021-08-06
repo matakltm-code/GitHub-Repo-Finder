@@ -1,0 +1,16 @@
+// HOW TO FIND MY ACCESS TOKEN IN GITHUB ACCOUNT
+// Generated Access token for my github accoutn -> https://github.com/settings/tokens
+// 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
+// https://api.github.com/users/matakltm-code/repos?access_token=
+
+
+// To publish first we have to get microsoft devops account for personal token
+    https://azure.microsoft.com/
+        // Generated values are
+        Token name: Vscode Extenstion For GitHub Repo Finder
+        token value: ubhtxqocmrjwx3xpjcspkxjom3qxnhhl4jadfmyeawje2w5phw4q
+
+
+// login in terminal using
+    vsce login michealataklt
+    // after this this will ask the token so i inserted the above token
