@@ -23,6 +23,6 @@ We’d love to get your help in making Github Repo Finder better! If you have fe
 
 - [Github: github.com/matakltm-code](http://github.com/matakltm-code)
 - [Email: matakltm.code@gmail.com](http://mail:matakltm.code@gmail.com)
-- [Phone: +251986308134](https://tel:0986308134)
+- [Phone: +251986308134](https://tel:+251913833334)
 
 **Enjoy!**
